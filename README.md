@@ -165,7 +165,7 @@ const CONFIG = {
 
 **To disable temporarily:**
 1. Click Tampermonkey icon in toolbar
-2. Toggle "Request Capture Tool" switch OFF
+2. Toggle "ReCapture" switch OFF
 3. Toggle back ON when needed (VERY useful to just have it "stored" in TamperMonkey's scripts)
 
 ## ⚡ PRO TIPS
