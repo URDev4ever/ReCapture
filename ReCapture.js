@@ -48,7 +48,7 @@
         
         container.innerHTML = `
             <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="margin: 0; color: #4CAF50;">🕵️‍♂️ ReQapture</h3>
+                <h3 style="margin: 0; color: #4CAF50;">🕵️‍♂️ ReCapture</h3>
                 <button id="capture-close" style="background: #f44336; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">X</button>
             </div>
             <div style="margin-bottom: 10px;">
@@ -519,7 +519,7 @@
     createUI();
     
     console.clear();
-    console.log('%c🕵️‍♂️ REQAPTURE ACTIVATED', 'background: #4CAF50; color: white; padding: 10px; font-size: 16px; border-radius: 5px;');
+    console.log('%c🕵️‍♂️ RECAPTURE ACTIVATED', 'background: #4CAF50; color: white; padding: 10px; font-size: 16px; border-radius: 5px;');
     console.log('%c📋 Commands available:', 'color: #2196F3; font-weight: bold;');
     console.log('  captureCommands.showAll()     - Show all captures');
     console.log('  captureCommands.showPost()    - Show only POST requests');
