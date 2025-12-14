@@ -1,8 +1,9 @@
-# ReCapture
-A lightweight in-browser Request Viewer that intercepts and displays fetch/XHR requests in real time. Includes filters, live UI, POST parsing, export to JSON, auto-copy, and a floating DevTools console panel. Just paste it into DevTools and start capturing.
+<h1 align="center">ReCapture</h1>
+<h3 align="center">A lightweight in-browser Request Viewer that intercepts and displays fetch/XHR requests in real time. Includes filters, live UI, POST parsing, export to JSON, auto-copy, and a floating DevTools console panel. Just paste it into DevTools and start capturing.</h3>
+
 
 ## 📋 QUICK START
-  You can either copy ReCapture.js and paste it in DevTools OR create a persistent script that you can enable/disable whenever you like WHITHOUT you having to keep coming to this horrible repo and copying the script.
+  You can either copy ReCapture.js and paste it in DevTools (F12 > Console > Ctrl + v) OR create a persistent script that you can enable/disable whenever you like WHITHOUT you having to keep coming to this horrible repo and copying the script.
   For that last option, you can use TAMPERMONKEY:
 1. **Copy the script** from above
 2. **Open Tampermonkey** in your browser
@@ -53,7 +54,11 @@ A lightweight in-browser Request Viewer that intercepts and displays fetch/XHR r
 **Once installed:**
 1. **Visit any website**
 2. **UI panel appears** (top-right corner)
+<img width="231" height="260" alt="recapture ui" src="https://github.com/user-attachments/assets/ae5fe392-f6de-49f8-b4f5-977618c41a7a" />
+
 3. **Interact with the page** - requests are captured automatically
+ <img width="415" height="542" alt="recapture capturing" src="https://github.com/user-attachments/assets/62961b07-f6c9-460d-bd56-c54c5dddf8a6" />
+
 4. **Use buttons** in the panel to:
    - Show all captures
    - Show only POST requests
@@ -73,6 +78,8 @@ captureCommands.find("text")      - Search captures
 captureCommands.getLast(5)        - Get last 5 captures
 captureCommands.getPostCaptures() - Get all POST
 ```
+<img width="273" height="303" alt="recapture console" src="https://github.com/user-attachments/assets/22238a3c-8009-4199-a90c-f986a49019dc" />
+
 
 ## ⚙️ CONFIGURATION
 
