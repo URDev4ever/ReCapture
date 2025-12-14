@@ -54,10 +54,16 @@
 **Once installed:**
 1. **Visit any website**
 2. **UI panel appears** (top-right corner)
-<img width="231" height="260" alt="recapture ui" src="https://github.com/user-attachments/assets/ae5fe392-f6de-49f8-b4f5-977618c41a7a" />
+  <img width="230" height="276" alt="recapture ui new" src="https://github.com/user-attachments/assets/5afcae97-e25d-4fe8-9692-0578d9a7898e" />
+
+  (you can minimize the ui if you need to)
+
+  <img width="127" height="54" alt="image (29)" src="https://github.com/user-attachments/assets/6b0feb9d-899a-4b07-8d87-94cc1ec7acbc" />
+
+  You'll be able to see in the minimized window whenever new requests appear.
 
 3. **Interact with the page** - requests are captured automatically
- <img width="415" height="542" alt="recapture capturing" src="https://github.com/user-attachments/assets/62961b07-f6c9-460d-bd56-c54c5dddf8a6" />
+<img width="420" height="530" alt="request capuring new" src="https://github.com/user-attachments/assets/84efe6e6-bc51-40bb-af01-06bda1b4adc9" />
 
 4. **Use buttons** in the panel to:
    - Show all captures
