@@ -22,6 +22,7 @@
     let captures = [];
     let isCapturing = true;
     let startTime = Date.now();
+    let isMinimized = false;
     
     // ===== UI ELEMENTS =====
     function createUI() {
@@ -49,28 +50,33 @@
         container.innerHTML = `
             <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                 <h3 style="margin: 0; color: #4CAF50;">🕵️‍♂️ ReCapture</h3>
-                <button id="capture-close" style="background: #f44336; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">X</button>
+                <div>
+                    <button id="capture-minimize" style="background: #555; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; margin-right: 5px;" title="Minimize">_</button>
+                    <button id="capture-close" style="background: #f44336; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">X</button>
+                </div>
             </div>
-            <div style="margin-bottom: 10px;">
-                <div>⏱️ Time: <span id="capture-time">0s</span></div>
-                <div>📊 Captured: <span id="capture-count">0</span></div>
-                <div>🔍 Status: <span id="capture-status" style="color: #4CAF50;">Active</span></div>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
-                <button id="btn-show-all" style="flex: 1; background: #2196F3; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Show All</button>
-                <button id="btn-show-post" style="flex: 1; background: #FF9800; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Show POST</button>
-                <button id="btn-clear" style="flex: 1; background: #f44336; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Clear</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
-                <button id="btn-export" style="flex: 1; background: #9C27B0; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Export JSON</button>
-                <button id="btn-copy" style="flex: 1; background: #009688; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Copy All</button>
-                <button id="btn-toggle" style="flex: 1; background: #607D8B; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Pause</button>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <input type="text" id="search-filter" placeholder="🔍 Filter by URL or text..." style="width: 100%; padding: 6px; box-sizing: border-box; border: 1px solid #555; background: #222; color: white; border-radius: 4px;">
-            </div>
-            <div id="capture-list" style="max-height: 300px; overflow-y: auto; font-size: 11px;">
-                <!-- Captures will appear here -->
+            <div id="capture-content" style="transition: all 0.3s ease;">
+                <div style="margin-bottom: 10px;">
+                    <div>⏱️ Time: <span id="capture-time">0s</span></div>
+                    <div>📊 Captured: <span id="capture-count">0</span></div>
+                    <div>🔍 Status: <span id="capture-status" style="color: #4CAF50;">Active</span></div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
+                    <button id="btn-show-all" style="flex: 1; background: #2196F3; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Show All</button>
+                    <button id="btn-show-post" style="flex: 1; background: #FF9800; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Show POST</button>
+                    <button id="btn-clear" style="flex: 1; background: #f44336; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Clear</button>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;">
+                    <button id="btn-export" style="flex: 1; background: #9C27B0; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Export JSON</button>
+                    <button id="btn-copy" style="flex: 1; background: #009688; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Copy All</button>
+                    <button id="btn-toggle" style="flex: 1; background: #607D8B; color: white; border: none; padding: 6px; border-radius: 4px; cursor: pointer;">Pause</button>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input type="text" id="search-filter" placeholder="🔍 Filter by URL or text..." style="width: 100%; padding: 6px; box-sizing: border-box; border: 1px solid #555; background: #222; color: white; border-radius: 4px;">
+                </div>
+                <div id="capture-list" style="max-height: 300px; overflow-y: auto; font-size: 11px;">
+                    <!-- Captures will appear here -->
+                </div>
             </div>
         `;
         
@@ -78,6 +84,7 @@
         
         // Event listeners
         document.getElementById('capture-close').onclick = () => container.remove();
+        document.getElementById('capture-minimize').onclick = toggleMinimize;
         document.getElementById('btn-show-all').onclick = () => showAllCaptures();
         document.getElementById('btn-show-post').onclick = () => showPostCaptures();
         document.getElementById('btn-clear').onclick = clearCaptures;
@@ -91,6 +98,38 @@
             const elapsed = Math.floor((Date.now() - startTime) / 1000);
             document.getElementById('capture-time').textContent = `${elapsed}s`;
         }, 1000);
+    }
+    
+    // ===== MINIMIZE FUNCTIONALITY =====
+    function toggleMinimize() {
+        const container = document.getElementById('request-capture-ui');
+        const content = document.getElementById('capture-content');
+        const minimizeBtn = document.getElementById('capture-minimize');
+        
+        if (!isMinimized) {
+            // Minimize
+            content.style.display = 'none';
+            container.style.padding = '10px';
+            container.style.width = 'auto';
+            minimizeBtn.textContent = '□';
+            minimizeBtn.title = "Restore";
+            
+            // Show minimal info in title
+            container.querySelector('h3').innerHTML = `🕵️‍♂️ ${captures.length} req`;
+            
+            isMinimized = true;
+        } else {
+            // Restore
+            content.style.display = 'block';
+            container.style.padding = '15px';
+            minimizeBtn.textContent = '_';
+            minimizeBtn.title = "Minimize";
+            
+            // Restore title
+            container.querySelector('h3').textContent = '🕵️‍♂️ ReCapture';
+            
+            isMinimized = false;
+        }
     }
     
     // ===== INTERCEPTORS =====
@@ -280,6 +319,14 @@
                 });
             }, 100);
         }
+        
+        // Update minimized title if minimized
+        if (isMinimized) {
+            const container = document.getElementById('request-capture-ui');
+            if (container) {
+                container.querySelector('h3').innerHTML = `🕵️‍♂️ ${captures.length} req`;
+            }
+        }
     }
     
     function updateCapture(id, data) {
@@ -298,7 +345,7 @@
         if (statusEl) statusEl.textContent = isCapturing ? 'Active' : 'Paused';
         if (statusEl) statusEl.style.color = isCapturing ? '#4CAF50' : '#FF9800';
         
-        if (listEl) {
+        if (listEl && !isMinimized) {
             // Show last 10 captures
             const recentCaptures = captures.slice(-10).reverse();
             listEl.innerHTML = recentCaptures.map(capture => `
@@ -395,6 +442,14 @@
         captures = [];
         updateUI();
         console.log('%c🧹 All captures cleared', 'color: #f44336;');
+        
+        // Update minimized title if minimized
+        if (isMinimized) {
+            const container = document.getElementById('request-capture-ui');
+            if (container) {
+                container.querySelector('h3').innerHTML = `🕵️‍♂️ ${captures.length} req`;
+            }
+        }
     }
     
     function toggleCapture() {
@@ -512,6 +567,8 @@
         ),
         getLast: (count = 1) => captures.slice(-count),
         getByIndex: (index) => captures[index],
+        minimize: toggleMinimize,
+        isMinimized: () => isMinimized,
         config: CONFIG
     };
     
@@ -530,10 +587,14 @@
     console.log('  captureCommands.find("text")  - Search captures');
     console.log('  captureCommands.getLast(5)    - Get last 5 captures');
     console.log('  captureCommands.getPostCaptures() - Get all POST');
+    console.log('  captureCommands.minimize()    - Toggle minimize/restore UI');
+    console.log('  captureCommands.isMinimized() - Check if UI is minimized');
     console.log('\n%c🎯 Now interact with the page to capture requests...', 'color: #4CAF50;');
     console.log('%c📊 UI panel is in the top-right corner', 'color: #FF9800;');
+    console.log('%c📱 Use the "_" button to minimize/restore the UI', 'color: #9C27B0;');
     
     // Update initial UI
     updateUI();
     
 })();
+// Line 600!! :p
