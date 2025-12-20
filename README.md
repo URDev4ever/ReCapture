@@ -224,4 +224,4 @@ Enable detailed logging by adding to CONFIG:
 debugMode: true,  // Add this for verbose logging
 ```
 
-With with <3 by URDev, for YOU!
+Made with <3 by URDev, for YOU!
