@@ -200,4 +200,12 @@ const CONFIG = {
 * Revisá la consola
 * Reiniciá el navegador si hace falta
 
+## ⭐ Contribuir
+
+Las pull requests son bienvenidas si:
+
+* Mejoran la confiabilidad de la interceptación de requests, la claridad de la UI, la lógica de filtrado o la estructura de exportación
+* Mejoran el rendimiento, el manejo de memoria o la estabilidad sin convertir la herramienta en un escáner o utilidad de explotación automatizada
+* Preservan la filosofía in-browser y orientada a la privacidad (sin transmisión externa de datos, sin tracking en segundo plano, sin comportamientos ocultos)
+
 Con <3 por URDev, ¡para VOS!
