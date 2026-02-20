@@ -224,4 +224,12 @@ Enable detailed logging by adding to CONFIG:
 debugMode: true,  // Add this for verbose logging
 ```
 
+## ⭐ Contributing
+
+Pull requests are welcome if they:
+
+* Improve request interception reliability, UI clarity, filtering logic, or export structure
+* Enhance performance, memory handling, or stability without turning the tool into a scanner or automated exploitation utility
+* Preserve the in-browser, privacy-first philosophy (no external data transmission, no background tracking, no hidden behavior)
+
 Made with <3 by URDev, for YOU!
