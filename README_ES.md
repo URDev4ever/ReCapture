@@ -2,8 +2,8 @@
 <h3 align="center">Un visor de requests liviano que corre en el navegador y permite interceptar y mostrar solicitudes fetch/XHR en tiempo real. Incluye filtros, UI en vivo, parsing de POST, exportación a JSON, copiado automático y un panel flotante tipo DevTools. Solo pegalo en DevTools y empezá a capturar.</h3>
 
 <p align="center">
-  🇺🇸 <a href="README.md">English</a> |
-  🇪🇸 <a href="README_ES.md"><b>Español</b></a>
+  🇺🇸 <a href="README.md"><b>English</b></a> |
+  🇪🇸 <b>Español</b>
 </p>
 
 ---
