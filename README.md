@@ -2,10 +2,9 @@
 <h3 align="center">A lightweight in-browser Request Viewer that intercepts and displays fetch/XHR requests in real time. Includes filters, live UI, POST parsing, export to JSON, auto-copy, and a floating DevTools console panel. Just paste it into DevTools and start capturing.</h3>
 
 <p align="center">
-  🇺🇸 <a href="README.md"><b>English</b></a> |
+  🇺🇸 <b>English</b> |
   🇪🇸 <a href="README_ES.md">Español</a>
 </p>
-
 
 ## 📋 QUICK START
   You can either copy ReCapture.js and paste it in DevTools (F12 > Console > Ctrl + v) OR create a persistent script that you can enable/disable whenever you like WHITHOUT you having to keep coming to this horrible repo and copying the script.
